@@ -17,7 +17,7 @@ export default function Home(){
       setLoading(true)
 
       const res = await axios.post(
-        "http://localhost:5001/generate-model",
+        "https://ai-3d-playground.onrender.com/generate-model",
         {prompt}
       )
 
