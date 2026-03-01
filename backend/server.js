@@ -7,7 +7,7 @@ const app = express()
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://your-vercel-domain.vercel.app"
+    "https://ai-3d-playground.vercel.app"
   ]
 }))
 app.use(express.json())
