@@ -48,7 +48,7 @@ export default function Home(){
         {/* Title */}
 
         <h1 className="text-4xl font-bold text-center text-white mb-2">
-          AI 3D Playground
+          3D Playground
         </h1>
 
         <p className="text-center text-gray-300 mb-8">
