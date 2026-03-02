@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import axios from "axios"
 import Playground from "../components/Playground"
 
@@ -7,6 +7,14 @@ export default function Home(){
   const [prompt,setPrompt] = useState("")
   const [model,setModel] = useState(null)
   const [loading,setLoading] = useState(false)
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const sharedModel = params.get("model")
+    if(sharedModel){
+      setModel(sharedModel)
+    }
+  }, [])
 
   const generate = async ()=>{
 
@@ -37,6 +45,15 @@ export default function Home(){
 
   const handleLoaded = () => {
     setLoading(false)
+  }
+
+  const shareModel = () => {
+    if(!model) return
+
+    const url = `${window.location.origin}?model=${encodeURIComponent(model)}`
+
+    navigator.clipboard.writeText(url)
+    alert("Share link copied to clipboard")
   }
 
   return(
@@ -79,6 +96,17 @@ export default function Home(){
           </button>
 
         </div>
+
+        {model && (
+          <div className="flex justify-center mb-6">
+            <button
+              onClick={shareModel}
+              className="px-5 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-semibold transition"
+            >
+              Share Model Link
+            </button>
+          </div>
+        )}
 
         {/* Quick suggestions */}
 
